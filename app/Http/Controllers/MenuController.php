@@ -15,7 +15,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+      $menu=Menu::all();
+      return $menu;
     }
 
     /**
@@ -36,7 +37,16 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        //
+        $menu= new Menu;
+        $menu->name=request->name;
+        $menu->name=request->price;
+        $menu->description=$request->description;
+        $menu->category_id=$requst->category_id;
+        $menu->allergens=$request->allergens;
+
+        $menu->save();
+
+        return $menu;
     }
 
     /**
