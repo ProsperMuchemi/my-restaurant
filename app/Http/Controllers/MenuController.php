@@ -38,11 +38,12 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request)
     {
         $menu= new Menu;
-        $menu->name=request->name;
-        $menu->name=request->price;
-        $menu->description=$request->description;
-        $menu->category_id=$requst->category_id;
+        $menu->name=$request->name;
+        $menu->price=$request->price;
+        $menu->decription=$request->description;
+        $menu->category_id=$request->category_id;
         $menu->allergens=$request->allergens;
+        $menu->offers=$request->offers;
 
         $menu->save();
 
@@ -80,7 +81,18 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
-        //
+      $menu = Menu::find($request->id);
+
+      $menu->name=request->name;
+      $menu->name=request->price;
+      $menu->description=$request->description;
+      $menu->category_id=$request->category_id;
+      $menu->allergens=$request->allergens;
+
+      $menu->save();
+
+      return $menu;
+
     }
 
     /**
